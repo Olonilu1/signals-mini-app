@@ -1,46 +1,52 @@
 [
   {
-    "symbol": "VOLATILITY 75 (1S)",
-    "direction": "SELL",
-    "entry": "3853.26",
-    "tp": "3826.08",
-    "sl": "3896.32",
-    "candle_open": 1795327200,
-    "why": "%K 60.3 crossed down through %D 71.2, price below the 200 MA at 4041.25",
-    "pushed": false,
-    "sample": true
-  },
-  {
-    "symbol": "VOLATILITY 100 (1S)",
+    "symbol": "VOLATILITY 10 (1S)",
     "direction": "BUY",
-    "entry": "1596.64",
-    "tp": "1616.67",
-    "sl": "1581.12",
-    "candle_open": 1795327200,
-    "why": "%K 13.0 crossed up through %D 11.4, price above the 200 MA at 1453.96",
-    "pushed": false,
-    "sample": true
+    "entry": "9673.87",
+    "tp": "9685.70",
+    "sl": "9665.30",
+    "candle_open": 1795492800,
+    "why": "%K 12.9 crossed up through %D 8.5, price above the 200 MA at 9594.36",
+    "pushed": true
   },
   {
-    "symbol": "VOLATILITY 100",
-    "direction": "SELL",
-    "entry": "533.660",
-    "tp": "521.790",
-    "sl": "549.996",
-    "candle_open": 1795338000,
-    "why": "%K 66.6 crossed down through %D 70.9, price below the 200 MA at 582.570",
-    "pushed": false,
-    "sample": true
-  },
-  {
-    "symbol": "VOLATILITY 25",
+    "symbol": "VOLATILITY 50 (1S)",
     "direction": "BUY",
-    "entry": "2930.46",
-    "tp": "2939.11",
-    "sl": "2914.86",
-    "candle_open": 1795341600,
-    "why": "%K 29.8 crossed up through %D 27.9, price above the 200 MA at 2900.14",
-    "pushed": false,
-    "sample": true
+    "entry": "226286.64",
+    "tp": "231745.43",
+    "sl": "224612.17",
+    "candle_open": 1795492800,
+    "why": "%K 18.0 crossed up through %D 16.2, price above the 200 MA at 210485.14",
+    "pushed": true
+  },
+  {
+    "symbol": "VOLATILITY 10",
+    "direction": "BUY",
+    "entry": "4867.02",
+    "tp": "4877.54",
+    "sl": "4859.30",
+    "candle_open": 1795460400,
+    "why": "%K 20.1 crossed up through %D 20.0, price above the 200 MA at 4850.99",
+    "pushed": true
+  },
+  {
+    "symbol": "VOLATILITY 15",
+    "direction": "SELL",
+    "entry": "100176.98",
+    "tp": "100041.76",
+    "sl": "100398.30",
+    "candle_open": 1795460400,
+    "why": "%K 69.3 crossed down through %D 75.5, price below the 200 MA at 101044.82",
+    "pushed": true
+  },
+  {
+    "symbol": "VOLATILITY 15 (1S)",
+    "direction": "SELL",
+    "entry": "14429.04",
+    "tp": "14384.93",
+    "sl": "14463.61",
+    "candle_open": 1795460400,
+    "why": "%K 78.1 crossed down through %D 80.5, price below the 200 MA at 14435.20",
+    "pushed": true
   }
 ]
