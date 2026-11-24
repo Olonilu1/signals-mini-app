@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Crosser signals</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root {
+    --bg: #0e1116; --card: #171c24; --line: #232b36;
+    --text: #e8edf3; --dim: #8a97a8;
+    --buy: #2ecc71; --sell: #ff5c5c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font: 15px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif;
+    padding: 16px; padding-top: max(16px, env(safe-area-inset-top));
+  }
+  h1 { font-size: 18px; margin-bottom: 2px; }
+  .sub { color: var(--dim); font-size: 12px; margin-bottom: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 12px 14px; margin-bottom: 10px;
+  }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .sym { font-weight: 600; font-size: 15px; }
+  .badge {
+    font-size: 12px; font-weight: 700; letter-spacing: .5px;
+    padding: 3px 10px; border-radius: 999px; color: #0b0e12;
+  }
+  .BUY .badge { background: var(--buy); }
+  .SELL .badge { background: var(--sell); }
+  .levels { display: flex; gap: 14px; margin-top: 8px; font-size: 13px; }
+  .levels span { color: var(--dim); }
+  .levels b { color: var(--text); font-variant-numeric: tabular-nums; }
+  .why { margin-top: 8px; color: var(--dim); font-size: 12px; }
+  .empty { color: var(--dim); text-align: center; padding: 40px 0; }
+  .err { color: var(--sell); text-align: center; padding: 40px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>Crosser signals</h1>
+<div class="sub" id="updated">loading</div>
+<div id="list"></div>
+<script>
+  const tg = window.Telegram && window.Telegram.WebApp;
+  if (tg) { tg.ready(); tg.expand(); }
+
+  const fmt = (n) => new Date(n * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+  function card(s) {
+    return `<div class="card ${s.direction}">
+      <div class="row"><span class="sym">${s.symbol}</span><span class="badge">${s.direction}</span></div>
+      <div class="levels">
+        <div><span>Entry</span> <b>${s.entry}</b></div>
+        <div><span>TP</span> <b>${s.tp}</b></div>
+        <div><span>SL</span> <b>${s.sl}</b></div>
+      </div>
+      <div class="why">${s.why || ""} &middot; ${fmt(s.candle_open)} candle</div>
+    </div>`;
+  }
+
+  async function load() {
+    const list = document.getElementById("list");
+    const updated = document.getElementById("updated");
+    try {
+      const res = await fetch("data/signals.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("http " + res.status);
+      const data = await res.json();
+      updated.textContent = data.length ? data.length + " signal(s) today" : "no signals yet";
+      list.innerHTML = data.length ? data.map(card).join("") : '<div class="empty">No signals yet today.</div>';
+    } catch (e) {
+      updated.textContent = "";
+      list.innerHTML = '<div class="err">Could not load signals. Try again shortly.</div>';
+    }
+  }
+
+  load();
+  setInterval(load, 30000);
+</script>
+</body>
+</html>
